@@ -43,6 +43,55 @@ public class App
 
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        App myApp = new App();
+
+        Integer principal = myApp.getprincipal();
+        double rate = myApp.getrate();
+        Integer years = myApp.getyears();
+        Integer n = myApp.gettimescompounded();
+        double total = myApp.calctotal(principal, rate, years, n);
+
+        myApp.output(principal, rate, years, n, total);
+    }
+
+    public void output(Integer principal, double rate, Integer years, Integer n, double total)
+    {
+        System.out.printf("$%d invested at %.1f%% for %d years compounded %d times per year is $%.2f.", principal, rate * 100, years, n, total);
+    }
+
+    public double calctotal(Integer principal, double rate, Integer years, Integer n)
+    {
+        double total = principal * Math.pow((1 + rate / n), (n * years));
+
+        return total;
+    }
+
+    public Integer gettimescompounded()
+    {
+        System.out.print("What is the number of times the interest is compounded per years? ");
+        Integer n = in.nextInt();
+        return n;
+    }
+
+    public Integer getyears()
+    {
+        System.out.print("What is the number of years? ");
+        Integer years = in.nextInt();
+        return years;
+    }
+
+    public double getrate()
+    {
+        System.out.print("What is the rate? ");
+        double inputrate = in.nextDouble();
+        double rate = inputrate / 100;
+        return rate;
+    }
+
+    public Integer getprincipal()
+    {
+        System.out.print("What is the principal amount? ");
+        Integer principal = in.nextInt();
+        return principal;
     }
 }
